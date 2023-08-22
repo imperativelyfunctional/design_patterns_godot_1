@@ -1,0 +1,211 @@
+[gd_scene load_steps=20 format=3 uid="uid://dfdwhoa3nmwnw"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_ga0gn"]
+[ext_resource type="Texture2D" uid="uid://cnopngam872kk" path="res://assets/characters/billy.png" id="2_uw6s7"]
+[ext_resource type="Script" path="res://camera.gd" id="3_muh32"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ur8e0"]
+size = Vector2(4, 2)
+
+[sub_resource type="Animation" id="Animation_gxebp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_3i5sc"]
+resource_name = "climbing"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_r5ltn"]
+resource_name = "falling"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [20]
+}
+
+[sub_resource type="Animation" id="Animation_khnca"]
+resource_name = "idling"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_m18xs"]
+resource_name = "idling_on_ladder"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+
+[sub_resource type="Animation" id="Animation_6bomp"]
+resource_name = "walking"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_2arns"]
+resource_name = "walking_up"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qhs4f"]
+_data = {
+"RESET": SubResource("Animation_gxebp"),
+"climbing": SubResource("Animation_3i5sc"),
+"falling": SubResource("Animation_r5ltn"),
+"idling": SubResource("Animation_khnca"),
+"idling_on_ladder": SubResource("Animation_m18xs"),
+"walking": SubResource("Animation_6bomp"),
+"walking_up": SubResource("Animation_2arns")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3rvnp"]
+animation = &"climbing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xwlp7"]
+animation = &"falling"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wqq8n"]
+animation = &"idling"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dxoq3"]
+animation = &"idling_on_ladder"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n44yn"]
+animation = &"walking"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o8cek"]
+animation = &"walking_up"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_b28hu"]
+states/climbing/node = SubResource("AnimationNodeAnimation_3rvnp")
+states/climbing/position = Vector2(733.622, 145.923)
+states/falling/node = SubResource("AnimationNodeAnimation_xwlp7")
+states/falling/position = Vector2(749.653, 235.923)
+states/idling/node = SubResource("AnimationNodeAnimation_wqq8n")
+states/idling/position = Vector2(394.622, 139.923)
+states/idling_on_ladder/node = SubResource("AnimationNodeAnimation_dxoq3")
+states/idling_on_ladder/position = Vector2(547.653, 150.923)
+states/walking/node = SubResource("AnimationNodeAnimation_n44yn")
+states/walking/position = Vector2(478.353, 271)
+states/walking_up/node = SubResource("AnimationNodeAnimation_o8cek")
+states/walking_up/position = Vector2(631.463, 207.913)
+graph_offset = Vector2(77.4748, 24.1501)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_ga0gn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_uw6s7")
+hframes = 10
+vframes = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 30)
+shape = SubResource("RectangleShape2D_ur8e0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 1281
+limit_bottom = 252
+script = ExtResource("3_muh32")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_qhs4f")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_b28hu")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+process_callback = 0

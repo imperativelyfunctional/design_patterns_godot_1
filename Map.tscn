@@ -1,0 +1,283 @@
+[gd_scene load_steps=27 format=3 uid="uid://b2jwaioefrnv4"]
+
+[ext_resource type="Texture2D" uid="uid://darksj6djrbmt" path="res://assets/map/m1.png" id="1_erxub"]
+[ext_resource type="Script" path="res://falling_stopper.gd" id="2_0tk7t"]
+[ext_resource type="Script" path="res://falling.gd" id="3_gtrig"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xm8b1"]
+size = Vector2(1279, 3.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggwcp"]
+size = Vector2(3, 257)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_goain"]
+size = Vector2(510.5, 1.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h688t"]
+size = Vector2(239, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78hg8"]
+size = Vector2(83.8849, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sbdk7"]
+size = Vector2(44, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vn1p6"]
+size = Vector2(94, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_77jq6"]
+size = Vector2(47, 2.57037)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5wwr"]
+size = Vector2(286, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnjdl"]
+size = Vector2(68, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2nkg3"]
+size = Vector2(366, 5)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mim4b"]
+radius = 6.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lk3qq"]
+size = Vector2(59.7089, 5.12794)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_30lk0"]
+size = Vector2(8, 253)
+
+[sub_resource type="GDScript" id="GDScript_8kh2r"]
+script/source = "extends Area2D
+
+@export var eventBus : Node2D
+
+@onready var shape : CollisionShape2D = $CollisionShape2D
+
+func _on_body_entered(_body):
+	EventBus.emit_signal('entering_ladder', shape.position, shape.shape.get_rect().size)
+
+func _on_body_exited(_body):
+	EventBus.emit_signal('leaving_ladder', shape.position, shape.shape.get_rect().size)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vd5ax"]
+size = Vector2(17, 104.053)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2n42h"]
+resource_local_to_scene = true
+size = Vector2(26.5, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oj650"]
+resource_local_to_scene = true
+size = Vector2(26.5, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ln1o3"]
+resource_local_to_scene = true
+size = Vector2(235, 3.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vk7g5"]
+resource_local_to_scene = true
+size = Vector2(40.25, 3.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h0hkx"]
+resource_local_to_scene = true
+size = Vector2(38.8522, 4.77745)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wa3fi"]
+size = Vector2(353.5, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ga8be"]
+size = Vector2(47.1179, 10.3107)
+
+[node name="Map" type="Sprite2D"]
+texture_filter = 1
+position = Vector2(0, 6)
+texture = ExtResource("1_erxub")
+centered = false
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="StaticBody2D10" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D10"]
+position = Vector2(640, 253.25)
+shape = SubResource("RectangleShape2D_xm8b1")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+position = Vector2(1279, 127)
+shape = SubResource("RectangleShape2D_ggwcp")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
+position = Vector2(99, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D2"]
+position = Vector2(157.75, 187.25)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_goain")
+one_way_collision = true
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
+position = Vector2(649.5, 189)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_h688t")
+one_way_collision = true
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D4"]
+position = Vector2(985.183, 138.869)
+rotation = -0.816034
+shape = SubResource("RectangleShape2D_78hg8")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D5"]
+position = Vector2(808, 188.5)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_sbdk7")
+one_way_collision = true
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D6"]
+position = Vector2(911, 170)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_vn1p6")
+one_way_collision = true
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D7"]
+position = Vector2(851, 178)
+rotation = 2.70526
+shape = SubResource("RectangleShape2D_77jq6")
+one_way_collision = true
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D8"]
+position = Vector2(1138, 134)
+shape = SubResource("RectangleShape2D_p5wwr")
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D9"]
+position = Vector2(1262, 154)
+rotation = 0.817981
+shape = SubResource("RectangleShape2D_rnjdl")
+
+[node name="StaticBody2D11" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D11"]
+position = Vector2(680, 58.5)
+shape = SubResource("RectangleShape2D_2nkg3")
+
+[node name="StaticBody2D12" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D12"]
+position = Vector2(1267, 157)
+shape = SubResource("CapsuleShape2D_mim4b")
+
+[node name="StaticBody2D13" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D13"]
+position = Vector2(498, 55)
+rotation = 2.23795
+shape = SubResource("RectangleShape2D_lk3qq")
+
+[node name="StaticBody2D14" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D14"]
+position = Vector2(0, 126)
+shape = SubResource("RectangleShape2D_30lk0")
+
+[node name="Areas" type="Node2D" parent="."]
+
+[node name="left" type="Area2D" parent="Areas"]
+script = SubResource("GDScript_8kh2r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/left"]
+position = Vector2(521.5, 133.933)
+shape = SubResource("RectangleShape2D_vd5ax")
+debug_color = Color(0.858824, 0.282353, 0.576471, 0.419608)
+
+[node name="right" type="Area2D" parent="Areas"]
+script = SubResource("GDScript_8kh2r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/right"]
+position = Vector2(778, 133.027)
+shape = SubResource("RectangleShape2D_vd5ax")
+debug_color = Color(0.905882, 0.247059, 0.45098, 0.419608)
+
+[node name="falling" type="Area2D" parent="Areas"]
+script = ExtResource("3_gtrig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/falling"]
+position = Vector2(498.5, 80.5)
+shape = SubResource("RectangleShape2D_2n42h")
+
+[node name="falling2" type="Area2D" parent="Areas"]
+script = ExtResource("3_gtrig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/falling2"]
+position = Vector2(498.5, 80.5)
+shape = SubResource("RectangleShape2D_oj650")
+debug_color = Color(0.921569, 0.211765, 0.462745, 0.419608)
+
+[node name="falling3" type="Area2D" parent="Areas"]
+script = ExtResource("3_gtrig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/falling3"]
+position = Vector2(649.5, 80.25)
+shape = SubResource("RectangleShape2D_ln1o3")
+debug_color = Color(0.890196, 0.262745, 0.501961, 0.419608)
+
+[node name="falling4" type="Area2D" parent="Areas"]
+script = ExtResource("3_gtrig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/falling4"]
+position = Vector2(809.875, 80)
+shape = SubResource("RectangleShape2D_vk7g5")
+debug_color = Color(0.87451, 0.262745, 0.564706, 0.419608)
+
+[node name="falling5" type="Area2D" parent="Areas"]
+script = ExtResource("3_gtrig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/falling5"]
+position = Vector2(846.403, 71.3748)
+rotation = 2.70526
+shape = SubResource("RectangleShape2D_h0hkx")
+debug_color = Color(0.901961, 0.164706, 0.643137, 0.419608)
+
+[node name="falling_stopper" type="Area2D" parent="Areas"]
+script = ExtResource("2_0tk7t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/falling_stopper"]
+position = Vector2(655.25, 194)
+shape = SubResource("RectangleShape2D_wa3fi")
+debug_color = Color(0.882353, 0.231373, 0.619608, 0.419608)
+
+[node name="falling_stopper2" type="Area2D" parent="Areas"]
+script = ExtResource("2_0tk7t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/falling_stopper2"]
+position = Vector2(854.509, 183.954)
+rotation = -0.445163
+shape = SubResource("RectangleShape2D_ga8be")
+debug_color = Color(0.882353, 0.231373, 0.619608, 0.419608)
+
+[connection signal="body_entered" from="Areas/left" to="Areas/left" method="_on_body_entered"]
+[connection signal="body_exited" from="Areas/left" to="Areas/left" method="_on_body_exited"]
+[connection signal="body_entered" from="Areas/right" to="Areas/right" method="_on_body_entered"]
+[connection signal="body_exited" from="Areas/right" to="Areas/right" method="_on_body_exited"]
+[connection signal="body_entered" from="Areas/falling" to="Areas/falling" method="_on_body_entered"]
+[connection signal="body_entered" from="Areas/falling2" to="Areas/falling2" method="_on_body_entered"]
+[connection signal="body_entered" from="Areas/falling3" to="Areas/falling3" method="_on_body_entered"]
+[connection signal="body_entered" from="Areas/falling4" to="Areas/falling4" method="_on_body_entered"]
+[connection signal="body_entered" from="Areas/falling5" to="Areas/falling5" method="_on_body_entered"]
+[connection signal="body_entered" from="Areas/falling_stopper" to="Areas/falling_stopper" method="_on_body_entered"]
+[connection signal="body_entered" from="Areas/falling_stopper2" to="Areas/falling_stopper2" method="_on_body_entered"]
